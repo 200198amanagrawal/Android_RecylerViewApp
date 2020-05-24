@@ -1,8 +1,8 @@
 package com.example.recylerviewapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 
@@ -29,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new RecepiesModel(R.drawable.food7,"Donno"));
         RecepieAdapter recepieAdapter=new RecepieAdapter(arrayList,this);
         recyclerView.setAdapter(recepieAdapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL);
+       //same is the case with horizontal too
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
     }
 }
