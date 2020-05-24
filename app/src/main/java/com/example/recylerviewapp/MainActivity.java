@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new RecepiesModel(R.drawable.food7,"Donno"));
         RecepieAdapter recepieAdapter=new RecepieAdapter(arrayList,this);
         recyclerView.setAdapter(recepieAdapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);//true will make it right side scroll
         recyclerView.setLayoutManager(linearLayoutManager);
 
     }
