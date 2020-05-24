@@ -56,7 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLongItemClick(View view, int position) {
-
+                switch (position)
+                {
+                    case 0:
+                        Toast.makeText(MainActivity.this, "Card1 long press", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
             }
         }));
 
