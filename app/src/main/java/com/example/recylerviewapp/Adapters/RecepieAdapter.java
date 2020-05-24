@@ -39,39 +39,39 @@ public class RecepieAdapter extends RecyclerView.Adapter<RecepieAdapter.viewhold
         RecepiesModel recepiesModel=list.get(position);
         holder.imageView.setImageResource(recepiesModel.getPic());
         holder.textView.setText(recepiesModel.getText());
-        switch (position)
-        {
-            case 0:
-                holder.imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Image1 clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                holder.textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Text 1 clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                break;
-            case 1:
-                holder.imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Image2 clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                holder.textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Text 2 clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                break;
-                default:
-                    break;
-        }
+//        switch (position)
+//        {
+//            case 0:
+//                holder.imageView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(context, "Image1 clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                holder.textView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(context, "Text 1 clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                break;
+//            case 1:
+//                holder.imageView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(context, "Image2 clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                holder.textView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(context, "Text 2 clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                break;
+//                default:
+//                    break;
+//        }this was just without RecyclerViewClickListner
 
     }
 
