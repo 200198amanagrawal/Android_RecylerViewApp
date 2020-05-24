@@ -1,6 +1,7 @@
 package com.example.recylerviewapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new RecepiesModel(R.drawable.food5,"Tortilas"));
         arrayList.add(new RecepiesModel(R.drawable.food6,"Something Wierd"));
         arrayList.add(new RecepiesModel(R.drawable.food7,"Donno"));
+        arrayList.add(new RecepiesModel(R.drawable.food1,"Burger"));
+        arrayList.add(new RecepiesModel(R.drawable.food2,"Pizza"));
         RecepieAdapter recepieAdapter=new RecepieAdapter(arrayList,this);
         recyclerView.setAdapter(recepieAdapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);//true will make it right side scroll
-        recyclerView.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);//true will make it right side scroll
+        recyclerView.setLayoutManager(gridLayoutManager);
 
     }
 }
