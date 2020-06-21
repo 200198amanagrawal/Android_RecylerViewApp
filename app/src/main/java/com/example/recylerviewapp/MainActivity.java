@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.recylerviewapp.Adapters.RecepieAdapter;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    RecepieAdapter recepieAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new RecepiesModel(R.drawable.food5,"Tortilas"));
         arrayList.add(new RecepiesModel(R.drawable.food6,"Something Wierd"));
         arrayList.add(new RecepiesModel(R.drawable.food7,"Donno"));
-        RecepieAdapter recepieAdapter=new RecepieAdapter(arrayList,this);
+        recepieAdapter=new RecepieAdapter(arrayList,this);
         recyclerView.setAdapter(recepieAdapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -66,6 +70,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.menu_scrolling,menu);
+
+        MenuItem searchItem=menu.findItem(R.id.search_view);
+        SearchView searchView= (SearchView) searchItem.getActionView();
+
+//        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recepieAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return true;
     }
 }

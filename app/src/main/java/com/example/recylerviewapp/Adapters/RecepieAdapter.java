@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,15 +17,20 @@ import com.example.recylerviewapp.Model.RecepiesModel;
 import com.example.recylerviewapp.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class RecepieAdapter extends RecyclerView.Adapter<RecepieAdapter.viewholder> {
+public class RecepieAdapter extends RecyclerView.Adapter<RecepieAdapter.viewholder>  implements Filterable {
 
     ArrayList<RecepiesModel> list;
+    private List<RecepiesModel> mDataListFull;
     Context context;
 
     public RecepieAdapter(ArrayList<RecepiesModel> list, Context context) {
         this.list = list;
         this.context = context;
+        mDataListFull=new ArrayList<>();
+        mDataListFull.addAll(list);
     }
 
     @NonNull
@@ -80,6 +87,7 @@ public class RecepieAdapter extends RecyclerView.Adapter<RecepieAdapter.viewhold
         return list.size();//this function is just used for showing the no of contents inside recyvlerview
     }
 
+
     public class viewholder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView textView;
@@ -89,4 +97,38 @@ public class RecepieAdapter extends RecyclerView.Adapter<RecepieAdapter.viewhold
             textView=itemView.findViewById(R.id.Recycler_text);
         }
     }
+
+    @Override
+    public Filter getFilter() {//yhis is the function which is generated using the Filterable implements
+        return userDatFilter;
+    }
+    private Filter userDatFilter=new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {//thid function is used to filter out the element and applies the filter logic
+            List<RecepiesModel> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0){
+                filteredList.addAll(mDataListFull);//mDataListFull is a backup arraylist which contains the following searched filter
+            }else {
+
+                String filter=constraint.toString().toLowerCase().trim();
+
+                for(RecepiesModel dataItem:mDataListFull){
+                    if(dataItem.getText().toLowerCase().contains(filter)){
+                        filteredList.add(dataItem);
+                    }
+                }
+            }
+            FilterResults results=new FilterResults();
+            results.values = filteredList;
+
+            return results;//this result will be called in the below method.
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((Collection<? extends RecepiesModel>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
